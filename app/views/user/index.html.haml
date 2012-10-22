@@ -1,0 +1,31 @@
+#registration
+  %table
+    %tbody
+      %tr
+        %td
+          %table#registration_table{:style => 'max-height:240px'}
+            %tbody
+              %tr
+                %td{:rowspan => 2, :style => 'border-left'}
+                  = video_tag(["videos/redneck.m4v"], :size => "320x240", :controls => true, :autobuffer => true)
+                  = image_tag('buca_daughter_hunt.jpg',:size => '75x75', :id=> 'buca_daughter')
+                %td#register_header
+                  %h3 Sign Up
+                  It is free to register
+              %tr
+                %td#registration_form
+                  = render :partial => 'registration_form_1'
+
+        %td
+          %table#sponsor_table
+            %tr
+              %td#sponsor_image
+                = image_tag('catherine_taylor_long.jpg', :size => '180x240')
+            %tr
+              %td#registration_table
+                "Come On Rednecks, Join Me On The Redneck Roundup"
+                %br
+                %br
+                Catherine Long
+                %br
+                CMT's Redneck Island&trade;

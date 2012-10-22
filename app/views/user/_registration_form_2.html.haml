@@ -1,0 +1,14 @@
+= form_for(@user, :url => {:action => 'complete_registration', :id => @user.id}) do |f|
+  %table
+    = f.error_messages
+    %tr
+      %td= f.label :date_of_birth
+      %td= f.date_select :date_of_birth, :start_year => 1900
+    %tr
+      %td= f.label :sex_id
+      %td= f.select :sex_id, User::SEX_IDs.collect
+    %tr
+      %td= f.label :relationship_status
+      %td= f.select :relationship_status_id, User::RELATIONSHIP_IDs.collect
+  %div
+    = f.submit "Finish Registration"

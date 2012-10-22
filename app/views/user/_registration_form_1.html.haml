@@ -1,0 +1,23 @@
+= form_for(@user) do |f|
+  = f.error_messages
+  %table
+    %tr
+      %td= f.label :first_name
+      %td= f.text_field :first_name
+    %tr
+      %td= f.label :last_name
+      %td= f.text_field :last_name
+    %tr
+      %td= f.label :email_address
+      %td= f.email_field :username
+    %tr
+      %td= f.label "Handle"
+      %td= f.text_field :cb_name
+    %tr
+      %td= f.label :password
+      %td= f.password_field :pwd
+    %tr
+      %td= f.label :password_confirmation
+      %td= f.password_field :pwd_confirmation
+  %div
+    = f.submit "Sign up"

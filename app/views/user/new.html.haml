@@ -1,0 +1,17 @@
+#registration
+  %table#registration_table
+    %tbody
+      %tr
+        %td
+          = video_tag("test.mp4", :size => "320x240", :controls => true, :autobuffer => true)
+        %td
+          %table
+            %tbody
+              %tr
+                %td
+                  #register_header
+                    %h3 Sign Up
+                    It is free to register
+              %tr
+                %td#registration_form
+                  = render :partial => 'registration_form_1'

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RedneckCurrent</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="title_bar">
+
+
+  <%= image_tag 'redneck_roundup_logo.png', :height => 76, :width => 210, :style => "position:relative;top:-10px;" %>
+  <% if session[:current_user].nil? == true %>
+    <% render :partial => 'login_form' %>
+  <% else %>
+    <%= render :partial => 'user_status' %>
+  <% end %>
+</div>
+<div id="ad_center">
+  <h2>SPONSERS</h2>
+  <%= render :partial => 'advertiser/advertisement', :collection => generate_advertisements %>
+</div>
+
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+#email
+  %img{:src => 'http://theredneckroundup.com/assets/redneck_roundup_logo.png', :size => '325x114'}
+  %br
+  %h2 Thank you for registering with The Redneck Roundup
+  %br
+  %p="Click #{link_to('here', :url => {"http://theredneckroundup.com/users/complete_registration/#{@user.id}&hash=#{@user.registration_hash}"})}here to verify your email address and finish the registration process"
