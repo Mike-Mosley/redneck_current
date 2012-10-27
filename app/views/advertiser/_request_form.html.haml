@@ -1,0 +1,22 @@
+%h2 Fill in the form and someone will contact you about advertising opportunities
+= form_for("ad_request", :url => {:action => 'send_ad_request'}, :remote => true) do |f|
+  = f.error_messages
+  %table
+    %tr
+      %td= f.label :company
+      %td= f.text_field :company
+    %tr
+      %td= f.label :first_name
+      %td= f.text_field :first_name
+    %tr
+      %td= f.label :last_name
+      %td= f.text_field :last_name
+    %tr
+      %td= f.label :email_address
+      %td= f.email_field :username
+    %tr
+      %td= f.label :phone_number
+      %td= f.text_field :phone_number
+  %div
+    = f.submit "Request Information"
+    = link_to 'Cancel', {:controller =>  'advertiser', :action => 'hide_request_form'}, :remote => true

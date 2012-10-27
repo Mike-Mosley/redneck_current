@@ -38,4 +38,9 @@ class UserController < ApplicationController
   def share_redneck_roundup
     @user = User.find(params[:id])
   end
+
+  def validate_email
+    @user = User.find(params[:id])
+    @validated = @user.validate_email(params[:hash])
+  end
 end

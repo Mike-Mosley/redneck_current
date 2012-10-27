@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration
       t.date  :date_of_birth
       t.string  :first_name
       t.string  :last_name
+      t.boolean :activated, :default => false
       t.string  :reset_password_token
       t.datetime :reset_password_sent_at
       t.datetime :remember_created_at

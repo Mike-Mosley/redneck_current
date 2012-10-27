@@ -4,7 +4,6 @@
   <title>RedneckCurrent</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -21,7 +20,11 @@
 </div>
 <div id="ad_center">
   <h2>SPONSERS</h2>
+  <br />
   <%= render :partial => 'advertiser/advertisement', :collection => generate_advertisements %>
+  <br />
+  <div id="advertiser_request_form" style="display:none"></div>
+  <%= link_to 'Advertise With Us', {:controller => 'advertiser', :action => 'show_request_form'}, :remote => true %>
 </div>
 
 <%= yield %>

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :last_name, :username, :pwd_confirmation, :pwd, :first_name, :sex_id, :date_of_birth, :cb_name, :relationship_status_id
+  attr_accessible :last_name, :username, :pwd_confirmation, :pwd, :first_name, :sex_id, :date_of_birth, :cb_name, :relationship_status_id, :activated
   validates :username, :presence => true, :uniqueness => true
   validates :pwd, :presence => true, :confirmation => true
   validates :pwd_confirmation, :presence => true
@@ -53,10 +53,21 @@ class User < ActiveRecord::Base
   end
 
   def send_confirmation
-    UserMailer.deliver_email_address_confirmation(self)
+    UserMailer.email_address_confirmation(self).deliver
   end
 
-  def generate_advertisements
+  def registration_hash
+    string_to_hash = self.id.to_s + self.salt.to_s + "redneck"
+    Digest::SHA1.hexdigest(string_to_hash)
+  end
 
+  def validate_email(hash)
+    logger.info hash
+    logger.info self.registration_hash
+    if self.registration_hash == hash
+      return true
+    else
+      return false
+    end
   end
 end

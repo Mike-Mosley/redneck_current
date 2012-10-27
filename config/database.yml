@@ -19,7 +19,10 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/redneck_production.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  database: theredne_production
   pool: 5
-  timeout: 5000
+  username: theredne_ck
+  password: 1Ps4mLK

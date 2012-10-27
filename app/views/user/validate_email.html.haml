@@ -1,0 +1,15 @@
+#registration
+  %table#registration_table
+    %tbody
+      %tr
+        %td
+          %h3 VALIDATION
+          - if @validated == true
+            Congratulations! Your e-mail has been verified. Welcome to the Redneck Roundup
+            %br
+            %br
+            We are working hard to get The Redneck Roundup ready for you. We will notify you as soon as it is ready!
+            %br
+            %br
+          - else
+            Something went wrong. Please contact administrator
