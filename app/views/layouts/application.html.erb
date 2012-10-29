@@ -19,12 +19,9 @@
   <% end %>
 </div>
 <div id="ad_center">
-  <h2>SPONSERS</h2>
-  <br />
   <%= render :partial => 'advertiser/advertisement', :collection => generate_advertisements %>
-  <br />
   <div id="advertiser_request_form" style="display:none"></div>
-  <%= link_to 'Advertise With Us', {:controller => 'advertiser', :action => 'show_request_form'}, :remote => true %>
+  <%= link_to image_tag('advertisors.jpg', :size => '230x500'), {:controller => 'advertiser', :action => 'show_request_form'}, :remote => true %>
 </div>
 
 <%= yield %>
