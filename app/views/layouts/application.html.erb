@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>RedneckCurrent</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+
+  <%= stylesheet_link_tag    "#{generate_media}", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -11,7 +12,7 @@
 <div id="title_bar">
 
 
-  <%= image_tag 'redneck_roundup_logo.png', :height => 76, :width => 210, :style => "position:relative;top:-10px;" %>
+  <%= image_tag 'redneck_roundup_logo_alt.png', :height => 76, :width => 210, :style => "position:relative;top:-10px;" %>
   <% if session[:current_user].nil? == true %>
     <% render :partial => 'login_form' %>
   <% else %>
@@ -21,7 +22,7 @@
 <div id="ad_center">
   <%= render :partial => 'advertiser/advertisement', :collection => generate_advertisements %>
   <div id="advertiser_request_form" style="display:none"></div>
-  <%= link_to image_tag('advertisors.jpg', :size => '230x500'), {:controller => 'advertiser', :action => 'show_request_form'}, :remote => true %>
+  <%= link_to image_tag('advertisors.jpg', :size => '230x500'), {:controller => 'advertiser', :action => 'show_request_form'}, :id => "advertiser_link", :remote => true %>
 </div>
 
 <%= yield %>

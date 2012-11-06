@@ -7,7 +7,7 @@
             %tbody
               %tr
                 %td{:rowspan => 2, :style => 'border-left'}
-                  = video_tag(["videos/redneck.m4v"], :size => "320x240", :controls => true, :autobuffer => true)
+                  = video_tag(["videos/redneck.m4v", "videos/redneck.mkv", "videos/redneck.mp4", "videos/redneck.webm"], :size => "320x240", :controls => true, :autobuffer => true)
                   = image_tag('buca_daughter_hunt.jpg',:size => '75x75', :id=> 'buca_daughter')
                 %td#register_header
                   %h3 Sign Up
@@ -22,10 +22,5 @@
               %td#sponsor_image
                 = image_tag('catherine_taylor_long_rooster.jpg', :size => '240x240')
             %tr
-              %td#registration_table
-                "Come On Rednecks, Join Me On The Redneck Roundup"
-                %br
-                %br
-                Catherine Long
-                %br
-                CMT's Redneck Island&trade;
+              %td
+                = link_to_function image_tag('wounded_warrior.jpg'), "window.open('https://support.woundedwarriorproject.org/default.aspx?tsid=66&campaignSource=WEBSITE&source=ONLINE&sm_guid=MTYyODV8MjQwNjY4NHwtMXxBbm5hcm9zZWFuZGVyc29uQGdtYWlsLmNvbXwzMTc5MXw1', '_blank')"

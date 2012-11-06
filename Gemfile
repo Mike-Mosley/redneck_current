@@ -5,12 +5,13 @@ gem 'haml'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'sqlite3'
 
 gem 'json'
 gem 'execjs'
-gem 'therubyracer'
+#gem 'therubyracer'
 gem "dynamic_form"
+gem 'browser'
 
 # Gems used only for assets and not required
 # in production environments by default.
