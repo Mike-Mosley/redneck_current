@@ -1,0 +1,3 @@
+<% @new_comments.each do |c| %>
+    $("#post_like_count_<%= @post.id %>").after("<%= escape_javascript(render(:partial => "roundup/comment", :locals => {:comment => c})) %>");
+<% end %>

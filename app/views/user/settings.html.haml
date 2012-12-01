@@ -1,0 +1,28 @@
+#registration
+  = render :partial => 'tabs'
+  #registration_table{:style => "max-width:700px"}
+    #settings
+      %h3=raw "User Information (#{link_to 'Edit', {:action=> 'edit_settings'}})"
+      %table#table_settings
+        %tbody
+          %tr
+            %th Username:
+            %td= current_user.username
+          %tr
+            %th First Name:
+            %td= current_user.first_name
+          %tr
+            %th Last Name:
+            %td= current_user.last_name
+          %tr
+            %th Handle:
+            %td= current_user.cb_name
+          %tr
+            %th Sex:
+            %td= User::SEX_IDs[current_user.sex_id.to_i][0]
+          %tr
+            %th Relationship Status
+            %td= User::RELATIONSHIP_IDs[current_user.relationship_status_id.to_i][0]
+          %tr
+            %th Date of Birth
+            %td= current_user.date_of_birth

@@ -1,0 +1,2 @@
+$("#comment_form_<%= @post.id %>").before("<%= escape_javascript(render(:partial => "roundup/comment", :locals => {:comment => @comment})) %>");
+$("#comment_<%= @post.id %>").val("");

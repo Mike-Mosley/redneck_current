@@ -1,0 +1,8 @@
+- if @images.nil? == true
+  - @images = current_user.all_images
+  - @page = 1
+= link_to image_tag('arrow_left_image.png', :size => '20x72'), {:action => 'scroll_images', :id => @page, :direction => 'left'}, :remote => true
+- @images.each do |i|
+  = link_to image_tag(i.image_url, :size => "60x60", :style => "margin:5px;"), {:action => 'show_large_image', :id => i.id}, :remote => true
+= link_to image_tag('arrow_right_image.png', :size => '20x72'), {:action => 'scroll_images', :id => @page, :direction => 'right'}, :style => "float:right; margin-right:8px;", :remote => true
+#full_picture{:style => "display:none"}

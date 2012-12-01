@@ -1,0 +1,17 @@
+#roundup{:style => "background-image:url(../../user/background/#{@user.id})"}
+  %table
+    %tbody
+      %tr
+        %td
+          %table#roundup_table{:style => "min-width:500px;min-height:250px"}
+            %tr#post_form
+              %td
+                %h2{:align => 'center'}= "#{current_user.cb_name} Profile"
+                =render :partial => 'new_post_form'
+            = render :partial => 'post', :collection => @posts
+        %td{:style => 'vertical-align:top'}
+          %table#friend_form
+            %tr
+              %td=render :partial => 'friend_info'
+            %tr{:align => 'center'}
+              %td=render :partial => 'user/wounded_warrior'

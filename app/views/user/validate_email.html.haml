@@ -5,11 +5,6 @@
         %td
           %h3 VALIDATION
           - if @validated == true
-            Congratulations! Your e-mail has been verified. Welcome to the Redneck Roundup
-            %br
-            %br
-            = image_tag ('validation.jpg')
-            %br
-            %br
+            = image_tag ('validation.jpg', :size => '576x432')
           - else
             Something went wrong. Please contact administrator

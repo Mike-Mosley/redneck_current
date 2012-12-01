@@ -1,0 +1,31 @@
+#registration
+  = render :partial => 'tabs'
+  #registration_table{:style => "max-width:700px"}
+    #settings
+      %h3=raw "User Information (#{link_to 'Edit', {:action=> 'edit_settings'}})"
+      = form_for(@user, :url => {:action => 'save_settings'}) do |f|
+        = f.error_messages
+        %table#table_settings
+          %tbody
+            %tr
+              %th Username:
+              %td= f.text_field :username
+            %tr
+              %th First Name:
+              %td= f.text_field :first_name
+            %tr
+              %th Last Name:
+              %td= f.text_field :last_name
+            %tr
+              %th Handle:
+              %td= f.text_field :cb_name
+            %tr
+              %th Sex:
+              %td= f.select :sex_id, User::SEX_IDs.collect
+            %tr
+              %th Relationship Status
+              %td= f.select :relationship_status_id, User::RELATIONSHIP_IDs.collect
+            %tr
+              %th Date of Birth
+              %td= f.date_select :date_of_birth, :start_year => 1900
+        = f.submit 'Save Settings'

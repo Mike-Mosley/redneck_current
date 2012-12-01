@@ -55,7 +55,7 @@ module RedneckCurrent
 
     # Enable the asset pipeline
     config.assets.enabled = true
-
+    config.assets.precompile += ['chrome.css', 'ie.css', 'firefox.css', 'firstfox.css']
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     config.assets.prefix = "~theredne/assets"

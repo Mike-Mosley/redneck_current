@@ -1,0 +1,25 @@
+#registration
+  = render :partial => 'tabs'
+  #registration_table{:style => "max-width:700px"}
+    #settings
+      %h3 Profile Settings
+      %table#table_settings
+        %tbody
+          %tr
+            %th Profile Picture
+            - if current_user.profile_image.nil? == false
+              %td
+                %img{:src => current_user.profile_image.image_url, :height => '45px', :width => '45px'}
+                %br
+                = link_to 'Change Image', {:action => 'set_profile_picture'}
+            - else
+              %td=link_to 'Set Profile Image', {:action => 'set_profile_picture'}
+          %tr
+            %th Background:
+            - if current_user.background_image.nil? == false
+              %td
+                %img{:src => current_user.background_image.image_url, :height => '45px', :width => '45px'}
+                %br
+                = link_to 'Change Background', {:action => 'set_background_picture'}
+            - else
+              %td= link_to 'Set Background Image', {:action => 'set_background_picture'}

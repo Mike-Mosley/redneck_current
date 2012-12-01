@@ -1,17 +1,42 @@
+body
+{
+    padding:0;
+    margin:0;
+}
 #login{
-    float:right;
+    text-align:right;
     color:white;
     font-weight:bold;
-    font-size:large;
+    font-size:8pt;
+    float:right;
+    margin-right:5px
+}
+#user_status{
+    text-align:right;
+    color:white;
+    font-weight:bold;
+    font-size:12pt;
+    float:right;
+    margin-right:5px
+}
+#user_status a {
+    color:white;
+}
+
+#user_status a:hover {
+    color:red;
+}
+
+#login_long
+{
 }
 
 #title_bar{
-    padding-top:15px;
-    padding-left:15px;
-    padding-right:15px;
-    height:80px;
     vertical-align:center;
-    background:url(title_bar.png)
+    background:url(title_bar.png);
+    position:fixed;
+    width:100%;
+    z-index:3;
 }
 
 #ad_center
@@ -20,6 +45,28 @@
     margin-left:20px;
     width:225px;
     float:left;
+    position:fixed;
+    top:60px;
+    z-index:3
+}
+#redneck_toast
+{
+    float:right;
+    position:fixed;
+    top:160px;
+    right:5px;
+    z-index:2;
+}
+
+#ad_center_roundup
+{
+    margin-top:20px;
+    margin-left:5px;
+    width:225px;
+    float:left;
+    position:fixed;
+    top:140px;
+    z-index:3
 }
 #advertiser_link
 {
@@ -38,9 +85,11 @@
 }
 #registration{
     padding-left:20%;
-    padding-top:5%;
-    height:500px;
-    background-image:url(camo1.png)
+    width:80%;
+    background-image:url(camo1.png);
+    background-repeat:repeat;
+    padding-bottom:76px;
+    min-height:600px;
 }
 #registration_table
 {
@@ -48,6 +97,35 @@
     border-style:outset;
     border-width:4px;
     background-color:white;
+    overflow: visible;
+    float:left;
+    z-index:2;
+    position:relative;
+    top:80px;
+    vertical-align:top;
+
+}
+#roundup{
+    padding-left:19%;
+    width:80%;
+    background-image:url(camo1.png);
+    background-repeat:repeat;
+    padding-bottom:156px;
+    min-height:600px;
+}
+#roundup_table
+{
+    border-color:black;
+    border-style:outset;
+    border-width:4px;
+    background-color:white;
+    overflow: visible;
+    float:left;
+    z-index:2;
+    position:relative;
+    top:160px;
+    vertical-align:top;
+
 }
 #sponsor_image
 {
@@ -55,14 +133,16 @@
 }
 #sponsor_table
 {
-    width:240px
+    width:240px;
+    top:80px;
+    position:fixed;
 }
 
 #advertiser_request_form
 {
     float:left;
     position:absolute;
-    top:100px;
+    top:0px;
     left:200px;
     z-index:4;
     background-color:#000000;
@@ -76,12 +156,189 @@
 {
     color:yellow;
 }
-    #buca_daughter
+
+#tabs li
 {
-/* Chrome/Safari     */
     float:left;
-    z-index:3;
     position:relative;
-    top:-230px;
-    left:-0px;
+    top:30px;
+    left:230px;
+    padding:10px;
+    margin-left:10px;
+    background-color:black;
+    border-style:inset;
+    border-color:green;
+    border-top-width:2px;
+    border-bottom-width:0px;
+    border-left-width:2px;
+    border-right-width:2px;
+    width:85px;
+    z-index:4;
+
+}
+a
+{
+    color:blue;
+    text-decoration:none;
+    font-size:smaller
+}
+#tabs a
+{
+    color:white;
+    text-decoration:none;
+    font-size:smaller
+}
+a:hover
+{
+    color:red;
+    text-decoration:none;
+    font-size:smaller
+}
+h3 a
+{
+    color:blue;
+}
+h3 a:hover
+{
+    color:red;
+}
+#tabs {
+ float:left;
+}
+.selected{
+    background-color:green
+}
+#settings {
+    position:relative;
+}
+#table_settings th
+{
+    text-align:left;
+    padding-right:10px;
+}
+#table_settings a
+{
+    color:blue
+}
+.post{
+    border-color:#d3d3d3;
+    border-width:2px;
+    border-style:inset;
+    width:98%;
+    margin-top:3px;
+    padding:2px;
+}
+.post a {
+    color:blue;
+    font-weight:bold;
+}
+
+.profile_image
+{
+    width:65px;
+}
+.post_text{
+    text-align:left;
+    vertical-align:top;
+}
+.new_post_button
+{
+    text-align:right;
+    background-color:#d3d3d3;
+    margin:0;
+    padding:0;
+}
+.greyout
+{
+    color:black;
+    font-size:smaller;
+    text-align:right;
+    background-color:#d3d3d3;
+    border-bottom-color:#a9a9a9;
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+
+}
+.greyleft
+{
+    background-color:#d3d3d3;
+    font-size:smaller;
+    background-color:#d3d3d3;
+    border-bottom-color:#a9a9a9;
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+}
+#comment_form
+{
+    vertical-align:top;
+    background-color:#d3d3d3;
+}
+#comment
+{
+    vertical-align:top;
+    background-color:#d3d3d3;
+    border-width:2px;
+    border-color:#a9a9a9;
+    border-style:outset;
+}
+#friend_form{
+    overflow: visible;
+    float:right;
+    margin-left:5px;
+    z-index:2;
+    position:fixed;
+    top:160px;
+    vertical-align:top;
+    border-color:black;
+    border-style:outset;
+    border-width:4px;
+    background-color:white;
+    max-width:300px;
+}
+#friend_images {
+max-width:300px;
+}
+#friend_search{
+    clear:left
+}
+.request{
+    color:blue;
+    indent:0px;
+}
+#friend_request_options
+{
+    display:inline;
+}
+#friend_request_options li
+{
+    background-color:lightgray;
+    border-color:white;
+    border-style:groove;
+    border-width:2px;
+}
+#image_bar
+{
+    height:74px;
+    width:100%;
+    background-color:white;
+    border-color:black;
+    border-style:ridge;
+    border-width:3px;
+    display:inline;
+    position:fixed;
+    top:76px;
+    z-index:5;
+}
+#full_picture
+{
+    position:absolute;
+    top:-45px;
+    left:15px;
+    z-index:10;
+    background-color:black;
+    padding:5%;
+    width:90%;
+    height:600px;
+    vertical-align:middle;
+    text-align:center;
 }

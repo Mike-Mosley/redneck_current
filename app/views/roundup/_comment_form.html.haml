@@ -1,0 +1,10 @@
+%tr{:id => "comment_form_#{post.id}"}
+  %td{:colspan =>2}
+    #comment_form
+      = form_for(:comment, :url => {:action => 'save_comment', :id => post.id}, :remote => true) do |f|
+        %table
+          %tr
+            %td{:rowspan => 2}= image_tag current_user.profile_image.image_url, :size => "60x60"
+            %td{:style => 'vertical-align:top'}= f.text_field :post, :size  => 48, :id => "comment_#{post.id}"
+
+

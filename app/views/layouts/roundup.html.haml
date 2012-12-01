@@ -1,0 +1,29 @@
+%html
+  %head
+    %title
+      Redneck Roundup
+    = stylesheet_link_tag    "#{generate_media}", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  #title_bar
+    = link_to image_tag('redneck_roundup_logo_alt.png', :height => 76, :width => 210), {:controller => 'roundup', :action => 'index'}
+    = image_tag('coming_soon1.png', :height => 76, :width => 450)
+    = image_tag('coming_soon2.png', :height => 76, :width => 450)
+    - if session[:current_user].nil? == true
+      = render :partial => 'login_form'
+    - else
+      = render :partial => 'user_status'
+  #image_bar
+    = render :partial => 'picture_bar'
+  #ad_center_roundup
+    = render :partial => 'advertiser/advertisement', :collection => generate_advertisements
+    #advertiser_request_form{:style => "display:none"}
+    = link_to image_tag('advertisors.gif', :size => '230x500'), {:controller => 'advertiser', :action => 'show_request_form'}, :id => "advertiser_link", :remote => true
+  #redneck_toast
+    = image_tag 'redneck_toast.jpg', :size => "239x480"
+  = yield
+  - if current_user.view_video == false
+    :javascript
+      $("#full_picture").html("#{escape_javascript(render(:partial => "roundup/intro_video"))}");
+      $("#full_picture").fadeIn(1000);
+    - current_user.mark_watched

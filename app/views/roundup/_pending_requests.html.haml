@@ -1,0 +1,9 @@
+%tr{:id => "request_#{pending_requests.id}"}
+  %td
+    = image_tag pending_requests.requester.profile_image.nil? ? 'redneck_roundup_logo.png' : pending_requests.requester.profile_image.image_url, :size => "60x60"
+    %br
+    = pending_requests.requester.cb_name
+  %td
+    =link_to 'Accept', {:action => 'accept_friend_request', :id => pending_requests.id}, :remote => true
+    %br
+    =link_to 'Deny', {:action => 'deny_friend_request', :id => pending_requests.id}, :remote => true

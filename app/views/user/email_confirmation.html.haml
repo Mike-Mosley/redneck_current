@@ -3,4 +3,4 @@
   %br
   %h2 Thank you for registering with The Redneck Roundup
   %br
-  %p=raw "Click <a href=http://theredneckroundup.com/user/validate_email/#{@user.id}&verifier=#{@user.registration_hash}>here</a> to verify your email address and finish the registration process"
+  %p=raw "Click <a href=http://theredneckroundup.com/user/validate_email/#{@user.id}?verifier=#{@user.registration_hash}>here</a> to verify your email address and finish the registration process"

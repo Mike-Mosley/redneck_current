@@ -12,6 +12,18 @@
   <component name="GemRequirementsHolder" version="3">
     <requirement>
       <requirement>
+        <dependency name="aws-s3" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="browser" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
         <dependency name="coffee-rails" version="3.2.1" bound="LATEST_IN_BRANCH" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
@@ -19,6 +31,12 @@
     <requirement>
       <requirement>
         <dependency name="dynamic_form" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="execjs" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
     </requirement>
@@ -114,6 +132,15 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] coffee-script (v2.2.0, C:/Ruby187/lib/ruby/gems/1.8/gems/coffee-script-2.2.0)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] haml (v3.2.0.rc.1, C:/Ruby187/lib/ruby/gems/1.8/gems/haml-3.2.0.rc.1)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] dynamic_form (v1.1.4, C:/Ruby187/lib/ruby/gems/1.8/gems/dynamic_form-1.1.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] browser (v#{MAJOR}.#{MINOR}.#{PATCH}, C:/Ruby187/lib/ruby/gems/1.8/gems/browser-0.1.5)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] aws (v2.5.8, C:/Ruby187/lib/ruby/gems/1.8/gems/aws-2.5.8)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] http_connection (v1.4.2, C:/Ruby187/lib/ruby/gems/1.8/gems/http_connection-1.4.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] uuidtools (v2.1.3, C:/Ruby187/lib/ruby/gems/1.8/gems/uuidtools-2.1.3)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] xml-simple (v1.1.2, C:/Ruby187/lib/ruby/gems/1.8/gems/xml-simple-1.1.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] browser (v0.1.5, C:/Ruby187/lib/ruby/gems/1.8/gems/browser-0.1.5)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] aws-s3 (v0.6.3, C:/Ruby187/lib/ruby/gems/1.8/gems/aws-s3-0.6.3)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] memcache-client (v1.8.5, C:/Ruby187/lib/ruby/gems/1.8/gems/memcache-client-1.8.5)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] dalli (v2.5.0, C:/Ruby187/lib/ruby/gems/1.8/gems/dalli-2.5.0)" level="application" />
   </component>
 </module>
 

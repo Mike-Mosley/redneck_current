@@ -21,5 +21,5 @@
               %td#sponsor_image
                 = image_tag('catherine_taylor_long_rooster.jpg', :size => '240x240')
             %tr
-              %td
-                = link_to_function image_tag('wounded_warrior.jpg'), "window.open('https://support.woundedwarriorproject.org/default.aspx?tsid=66&campaignSource=WEBSITE&source=ONLINE&sm_guid=MTYyODV8MjQwNjY4NHwtMXxBbm5hcm9zZWFuZGVyc29uQGdtYWlsLmNvbXwzMTc5MXw1', '_blank')"
+              %td=render :partial => 'user/wounded_warrior'
+

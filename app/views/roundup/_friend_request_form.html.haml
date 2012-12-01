@@ -1,0 +1,4 @@
+.request
+  = image_tag friend.profile_image.nil? ? 'redneck_roundup_logo.png' : friend.profile_image.image_url, :size => "60x60"
+  %br
+  = friend.cb_name
