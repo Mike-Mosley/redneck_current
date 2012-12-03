@@ -1,6 +1,8 @@
 <% if params[:data].blank? == false %>
-    $("#friend_request_options").html("<%= escape_javascript(render(:partial => "roundup/friend_request_option", :collection => @users)) %>");
-    $("#friend_request_options").fadeIn(1000);
+$("#friend_request_options").empty();
+$("#friend_request_options").html("<%= escape_javascript(render(:partial => "roundup/friend_request_option", :collection => @users)) %>");
+$("#friend_request_options").append("<%= escape_javascript(render(:partial => "roundup/friend_request_all")) %>");
+$("#friend_request_options").fadeIn(1000);
 <% else %>
-    $("#friend_request_options").fadeOut(1000);
+$("#friend_request_options").fadeOut(1000);
 <% end %>

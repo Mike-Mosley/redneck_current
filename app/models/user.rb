@@ -83,8 +83,10 @@ class User < ActiveRecord::Base
   def self.send_password_reset(username)
     user = self.find_by_username(username)
     token_string = self.id.to_s + "redneck" + Time.now.to_s
-    user.update_attribute(:reset_password_token, Digest::SHA1.hexdigest(token_string))
-    UserMailer.password_reset(user).deliver
+    if user
+      user.update_attribute(:reset_password_token, Digest::SHA1.hexdigest(token_string))
+      UserMailer.password_reset(user).deliver
+    end
   end
 
   def update_password(password)
@@ -109,12 +111,16 @@ class User < ActiveRecord::Base
 
   def gather_posts
     @posts = []
-    @posts << Post.where("created_by IN (#{self.friends.collect(&:friend_id).join(",")}) or created_by = #{self.id}").where(:addressable_type => 'Status').order("created_at DESC").limit(10).all
+    if self.friends.length > 0
+      @posts << Post.where("created_by IN (#{self.friends.collect(&:friend_id).join(",")}) or created_by = #{self.id}").where(:addressable_type => 'Status').order("created_at DESC").limit(10).all
+    else
+      @posts << Post.where("created_by = #{self.id}").where(:addressable_type => 'Status').order("created_at DESC").limit(10).all
+    end
     @posts.flatten!
   end
 
   def random_friends
-    self.friends.sort_by{rand}[0..8]
+    Friend.where(:user_id => self.id).all.sort_by{rand}[0..7]
   end
 
   def pending_requests
@@ -122,7 +128,12 @@ class User < ActiveRecord::Base
   end
 
   def all_images
-    @images = Image.where("user_id IN (#{self.friends.collect(&:friend_id).join(",")}) or user_id = #{self.id}").limit(17).order("created_at DESC")
+    if self.friends.length > 0
+      @images = Image.where("user_id IN (#{self.friends.collect(&:friend_id).join(",")}) or user_id = #{self.id}").limit(17).order("created_at DESC")
+    else
+      @images = Image.where("user_id = #{self.id}").limit(17).order("created_at DESC")
+    end
+
   end
 
   def more_images(id,direction)
@@ -134,6 +145,15 @@ class User < ActiveRecord::Base
   def mark_watched
     self.view_video = true
     self.update_attribute(:view_video, true)
+  end
+
+  def handle
+    if self.cb_name.nil? == false and self.cb_name.blank? == false
+      return self.cb_name[0...8]
+    else
+      handle = self.first_name + " " + self.last_name
+      return handle[0...8]
+    end
   end
 
 end

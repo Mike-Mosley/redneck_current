@@ -4,11 +4,13 @@ class RoundupController < ApplicationController
   def index
     if current_user.nil? == true
       redirect_to :controller => 'user', :action => 'login_page'
+    else
+      @post = Post.new
+      @posts = current_user.gather_posts
+      @all = Post.all
+      @friend_requests = current_user.pending_requests
     end
-    @post = Post.new
-    @posts = current_user.gather_posts
-    @all = Post.all
-    @friend_requests = current_user.pending_requests
+
   end
 
   def user_profile
@@ -71,15 +73,22 @@ class RoundupController < ApplicationController
   end
 
   def find_friends
-    @suggested_users = User.where("cb_name LIKE '%#{params[:data]}%'").all
+    @suggested_users = User.where("cb_name LIKE '%#{params[:data]}%' or username LIKE '%#{params[:data]}%' or first_name LIKE '%#{params[:data]}%' or last_name LIKE '%#{params[:data]}%' ").all
     @suggested_users.delete(current_user)
     @current_requests = FriendRequest.find_all_by_request_by(current_user.id)
-    logger.info @current_requests.inspect
     @current_requests.each do |r|
-      @suggested_users.delete_at(r.request_to)
+      @suggested_users.delete_if{|f| f.id == r.request_to}
+    end
+    @users = @suggested_users.sort_by{rand}[0..2]
+  end
+  def find_friends_full
+    @suggested_users = User.where("cb_name LIKE '%#{params[:data]}%' or username LIKE '%#{params[:data]}%' or first_name LIKE '%#{params[:data]}%' or last_name LIKE '%#{params[:data]}%' ").all
+    @suggested_users.delete(current_user)
+    @current_requests = FriendRequest.find_all_by_request_by(current_user.id)
+    @current_requests.each do |r|
+      @suggested_users.delete_if{|f| f.id == r.request_to}
     end
     @users = @suggested_users
-    logger.info @users.inspect
   end
 
   def send_friend_request
@@ -88,7 +97,6 @@ class RoundupController < ApplicationController
     @friend_request.request_to= params[:id]
     @friend_request.active = true
     @friend_request.save
-    render 'find_friends'
   end
 
   def accept_friend_request
@@ -126,6 +134,52 @@ class RoundupController < ApplicationController
       store_image(@picture, @image)
       render :action => 'upload_pictures'
     end
+  end
+
+  def add_buca_to_all
+    @users = User.all
+    @buca = User.find(68)
+    @users.delete_at(68)
+    @users.each do |u|
+      unless @buca.friends.select{|f| f.friend_id == u.id}.length > 0
+        @friend = Friend.new
+        @friend.user_id = u.id
+        @friend.friend_id = 68
+        @reverse_friend = Friend.new
+        @reverse_friend.friend_id = u.id
+        @reverse_friend.user_id = 68
+        @friend.save
+        @reverse_friend.save
+      end
+    end
+  end
+
+  def clear_duplicated_friends
+    @friends = Friend.all
+    @friends.each do |friend|
+      @matches = @friends.select{|f| f.friend_id == friend.friend_id && f.user_id == friend.user_id}
+      if @matches.length > 1
+        @replacement_friend = Friend.new
+        @replacement_friend.friend_id = friend.friend_id
+        @replacement_friend.user_id = friend.user_id
+        @matches.each do |m|
+          m.destroy
+          logger.info m.inspect
+        end
+        @replacement_friend.save
+        logger.info @replacement_friend.inspect
+      end
+      @friends.delete_if{|f| f.friend_id == friend.friend_id && f.user_id == friend.user_id}
+    end
+    render :nothing => true
+  end
+
+  def terms
+
+  end
+
+  def feedback
+    SupportMailer.send_feedback(current_user, params[:feedback][:description])
   end
 
 end

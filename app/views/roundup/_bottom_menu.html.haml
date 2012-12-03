@@ -1,0 +1,13 @@
+%tr
+  %td{:align => 'center'}
+    = link_to 'Terms and Conditions ', {:controller => 'roundup', :action => 'terms'}, {:id => 'terms_link', :remote => true}
+    |
+    = link_to ' Privacy Policy', {:controller => 'roundup', :action => 'privacy'}, {:id => 'privacy_link', :remote => true}
+    :javascript
+      $('#terms_link').click(function(){
+        window.open('/TRRUTermsConditions.pdf', '_blank')
+      })
+    :javascript
+      $('#privacy_link').click(function(){
+        window.open('/TRRUPrivacyPolicy.pdf', '_blank')
+      })

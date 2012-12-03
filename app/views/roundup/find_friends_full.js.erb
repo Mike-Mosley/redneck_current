@@ -1,0 +1,7 @@
+<% if params[:data].blank? == false %>
+$("#friend_request_options_full").empty();
+$("#friend_request_options_full").html("<%= escape_javascript(render(:partial => "roundup/friend_request_option_full", :collection => @users)) %>");
+$("#friend_request_options_full").fadeIn(1000);
+<% else %>
+$("#friend_request_options_full").fadeOut(1000);
+<% end %>

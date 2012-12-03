@@ -1,0 +1,11 @@
+= form_for(:feedback, :url => {:action => 'feedback'}, :remote => true) do |f|
+  %table#feedback_form_table
+    %tr
+      %td{:colspan => 2}
+        %h3 Please tell us how we can make The Redneck Roundup even better.
+    %tr
+      %td How Can We Help?
+      %td= f.text_area :description, :size => '30x4'
+    %tr
+      %td=f.submit 'Send Feedback'
+      %td=link_to 'Cancel', {:action => 'cancel_feedback'}, :remote => true

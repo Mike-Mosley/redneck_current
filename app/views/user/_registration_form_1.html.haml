@@ -19,5 +19,18 @@
     %tr
       %td= f.label :password_confirmation
       %td= f.password_field :pwd_confirmation
-  %div
+  %div{:style => "max-width:350px"}
+    By clicking submit you are agreeing to our
+    = link_to 'terms and conditions', {:controller => 'roundup', :action => 'terms'}, {:id => 'terms_link', :remote => true}
+    and our
+    = link_to 'privacy policy', {:controller => 'roundup', :action => 'privacy'}, {:id => 'privacy_link', :remote => true}
+    %br
     = f.submit "Sign up"
+    :javascript
+      $('#terms_link').click(function(){
+        window.open('/TRRUTermsConditions.pdf', '_blank')
+      })
+    :javascript
+      $('#privacy_link').click(function(){
+        window.open('/TRRUPrivacyPolicy.pdf', '_blank')
+      })

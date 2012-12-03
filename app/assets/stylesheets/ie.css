@@ -3,6 +3,10 @@ body
     padding:0;
     margin:0;
 }
+ a {
+    text-decoration:none;
+}
+a img {border: none; }
 #login{
     text-align:right;
     color:white;
@@ -15,7 +19,7 @@ body
     text-align:right;
     color:white;
     font-weight:bold;
-    font-size:16pt;
+    font-size:12pt;
     float:right;
     margin-right:5px
 }
@@ -240,6 +244,8 @@ h3 a:hover
 .post_text{
     text-align:left;
     vertical-align:top;
+    max-width:400px;
+    padding:2px;
 }
 .new_post_button
 {
@@ -280,6 +286,7 @@ h3 a:hover
     border-width:2px;
     border-color:#a9a9a9;
     border-style:outset;
+    max-width:400px;
 }
 #friend_form{
     overflow: visible;

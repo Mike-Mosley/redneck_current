@@ -1,1 +1,3 @@
-= link_to content_tag(:li, render(:partial => 'friend_request_form', :locals => {:friend => friend_request_option})), {:id => friend_request_option.id, :action => 'send_friend_request'}, :remote => true
+%tr
+  %td
+    = render(:partial => 'friend_request_form', :locals => {:friend => friend_request_option})

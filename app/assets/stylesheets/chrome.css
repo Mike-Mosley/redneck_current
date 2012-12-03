@@ -112,6 +112,7 @@ body
     background-repeat:repeat;
     padding-bottom:156px;
     min-height:600px;
+    opacity:50%;
 }
 #roundup_table
 {
@@ -240,6 +241,8 @@ h3 a:hover
 .post_text{
     text-align:left;
     vertical-align:top;
+    max-width:400px;
+    padding:2px;
 }
 .new_post_button
 {
@@ -280,6 +283,7 @@ h3 a:hover
     border-width:2px;
     border-color:#a9a9a9;
     border-style:outset;
+    max-width:400px;
 }
 #friend_form{
     overflow: visible;
@@ -299,22 +303,30 @@ h3 a:hover
 max-width:300px;
 }
 #friend_search{
-    clear:left
+    clear:left;
+    width:300px;
+    max-width:300px;
 }
 .request{
     color:blue;
     indent:0px;
+    max-width:200px;
+    width:200px;
 }
 #friend_request_options
 {
+    width:300px;
+    max-width:300px;
     display:inline;
 }
-#friend_request_options li
+#friend_request_options tr
 {
     background-color:lightgray;
     border-color:white;
     border-style:groove;
     border-width:2px;
+    max-width:100%;
+    width:100%;
 }
 #image_bar
 {
@@ -341,4 +353,19 @@ max-width:300px;
     height:600px;
     vertical-align:middle;
     text-align:center;
+}
+#feedback_form{
+    position:fixed;
+    left:250px;
+    top:160px;
+    height:400px;
+    width:800px;
+    z-index:10;
+    background: black;
+    color:white;
+    padding:2%;
+}
+#feedback_form_table
+{
+    color:white;
 }

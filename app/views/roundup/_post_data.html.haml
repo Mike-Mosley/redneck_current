@@ -1,6 +1,6 @@
 %tr
   %td.profile_image{}
-    = image_tag post.user.profile_image.image_url, :size => "60x60"
+    = image_tag post.user.profile_image.nil? ? 'redneck_roundup_logo_alt.jpg' : post.user.profile_image.image_url, :size => "60x60"
   %td.post_text{:colspan =>2}
     = post.post
 %tr

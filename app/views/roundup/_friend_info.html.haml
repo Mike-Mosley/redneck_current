@@ -1,5 +1,7 @@
 #friend_images
-  %h3 Your Buds
+  %h3
+    Your Buds
+    %span{:style => 'font-size:smaller'}= link_to 'See All', :action => 'all_buds'
   = render :partial => 'friend_images', :collection => current_user.random_friends
 #friend_search
   =render :partial => 'friend_find_form'

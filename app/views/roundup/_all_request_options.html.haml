@@ -1,0 +1,10 @@
+%p Enter Buds Name or Email Address
+= text_field_tag :data_full, nil, :size => 40
+:javascript
+  $("#data_full").live("keyup", function() {
+    $.post("/roundup/find_friends_full", { data: $('#data_full').val() }, function(html) {
+      $("#borrower_netid_message").html(html);
+    });
+  });
+%table#friend_request_options_full{:style => "display:none",:cellpadding => 0, :cellspacing => 0}
+

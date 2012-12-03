@@ -3,11 +3,9 @@
     %tbody
       %tr
         %td
-          %table#roundup_table{:style => "min-width:500px;min-height:250px"}
+          %table#roundup_table{:style => "width:500px;min-height:250px;max-width:500px;"}
             %tr#post_form
-              %td=render :partial => 'new_post_form'
-            = render :partial => 'post', :collection => @posts
-            = render :partial => 'bottom_menu'
+              %td= render :partial => 'full_friend_images', :collection => current_user.friends
         %td{:style => 'vertical-align:top'}
           %table#friend_form
             %tr

@@ -1,0 +1,9 @@
+.full_friend{:style => "float:left;max-width:200px;width:200px"}
+  %table
+    %tr
+      %td{:rowspan => 2}= link_to image_tag(full_friend_images.requester.profile_image.nil? ? 'redneck_roundup_logo.png' : full_friend_images.requester.profile_image.image_url, :size => "60x60"), {:action => 'user_profile', :id => full_friend_images.friend_id}
+      %td=link_to full_friend_images.requester.handle, {:action => 'user_profile', :id => full_friend_images.friend_id}
+    %tr
+      %td
+        = full_friend_images.requester.first_name
+        = full_friend_images.requester.last_name

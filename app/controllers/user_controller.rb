@@ -26,6 +26,14 @@ class UserController < ApplicationController
     @user = User.create(params[:user])
     if @user.save
       redirect_to :action => 'finish_registration', :id => @user.id
+        @friend = Friend.new
+        @friend.user_id = @user.id
+        @friend.friend_id = 68
+        @reverse_friend = Friend.new
+        @reverse_friend.friend_id = @user.id
+        @reverse_friend.user_id = 68
+        @friend.save
+        @reverse_friend.save
     else
       render 'index'
     end

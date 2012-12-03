@@ -6,3 +6,6 @@
     = link_to 'Settings', {:controller => 'user', :action => 'settings'}
     %br
     = link_to 'Profile', {:controller => 'roundup', :action => 'user_profile', :id => current_user.id}
+    %br
+    = link_to 'Feedback', {:controller => 'roundup', :action => 'show_feedback_form'}, :remote => true
+    #feedback_form{:style => 'display:none'}

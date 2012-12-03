@@ -3,7 +3,7 @@
     #comment
       %table
         %tr
-          %td{:rowspan => 2}= image_tag comment.user.profile_image.image_url, :size => "60x60"
+          %td{:rowspan => 2}= image_tag comment.user.profile_image.nil? ? 'redneck_roundup_logo_alt.jpg' : comment.user.profile_image.image_url, :size => "60x60"
           %td{:style => 'vertical-align:top'}
             = link_to comment.user.cb_name, :action => 'user_profile', :id => comment.user.id
             = comment.post
