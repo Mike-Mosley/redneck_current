@@ -1,8 +1,32 @@
 - if @images.nil? == true
   - @images = current_user.all_images
   - @page = 1
-= link_to image_tag('arrow_left_image.png', :size => '20x72'), {:action => 'scroll_images', :id => @page, :direction => 'left'}, :remote => true
+= image_tag 'arrow_left_image.png', {:size => '20x72', :id => "left_scroll_bar"}
 - @images.each do |i|
-  = link_to image_tag(i.image_url, :size => "60x60", :style => "margin:5px;"), {:action => 'show_large_image', :id => i.id}, :remote => true
-= link_to image_tag('arrow_right_image.png', :size => '20x72'), {:action => 'scroll_images', :id => @page, :direction => 'right'}, :style => "float:right; margin-right:8px;", :remote => true
+  = link_to image_tag(i.image_url, :size => "60x60", :style => "margin:5px;"), {:action => 'show_large_image', :id => i.id}, {:remote => true, :class => 'picture', :id => "picture_#{i.id}"}
+= image_tag 'arrow_right_image.png', {:size => '20x72', :id => "right_scroll_bar"}
+= hidden_field_tag "image_start", @images.first.id
+= hidden_field_tag "image_end", @images.last.id
+= hidden_field_tag "last_image", 0
 #full_picture{:style => "display:none"}
+#picture_script{:style => "display:none"}
+  :javascript
+    var myInterval = false;
+    $("#left_scroll_bar").hover(
+      function() {
+        myInterval = setInterval(
+          function(){
+            $.post("/roundup/scroll_left", { start: $('#image_start').val(), end: $('#image_end').val(), last: $('#last_image').val() }, function() {$("#borrower_netid_message").html(html);});
+            }, 1500); // repeat every 100 ms
+         },function() {
+            clearInterval(myInterval);  // clear the interval on hoverOut
+         });
+    $("#right_scroll_bar").hover(
+      function() {
+        myInterval = setInterval(
+          function(){
+            $.post("/roundup/scroll_right", { start: $('#image_start').val(), end: $('#image_end').val(), last: $('#last_image').val() }, function() {$("#borrower_netid_message").html(html);});
+            }, 1500); // repeat every 100 ms
+         },function() {
+            clearInterval(myInterval);  // clear the interval on hoverOut
+         });

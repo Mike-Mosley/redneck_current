@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
 
   def all_images
     if self.friends.length > 0
-      @images = Image.where("user_id IN (#{self.friends.collect(&:friend_id).join(",")}) or user_id = #{self.id}").limit(17).order("created_at DESC")
+      @images = Image.where("user_id IN (#{self.friends.collect(&:friend_id).join(",")}) or user_id = #{self.id}").limit(18).order("created_at DESC")
     else
       @images = Image.where("user_id = #{self.id}").limit(17).order("created_at DESC")
     end
@@ -154,6 +154,21 @@ class User < ActiveRecord::Base
       handle = self.first_name + " " + self.last_name
       return handle[0...8]
     end
+  end
+
+  def next_image(image_id)
+    @image = Image.where("(user_id IN (#{self.friends.collect(&:friend_id).join(",")}) or user_id = #{self.id}) AND images.id < ? ", image_id).reverse.first
+    if @image.nil?
+      @image = Image.where("(user_id IN (#{self.friends.collect(&:friend_id).join(",")}) or user_id = #{self.id})").order("id DESC").first
+    end
+    return @image
+  end
+  def previous_image(image_id)
+    @image = Image.where("(user_id IN (#{self.friends.collect(&:friend_id).join(",")}) or user_id = #{self.id}) AND images.id > ? ", image_id).first
+    if @image.nil?
+      @image = Image.where("(user_id IN (#{self.friends.collect(&:friend_id).join(",")}) or user_id = #{self.id})").first
+    end
+    return @image
   end
 
 end

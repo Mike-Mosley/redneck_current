@@ -79,6 +79,10 @@ class RoundupController < ApplicationController
     @current_requests.each do |r|
       @suggested_users.delete_if{|f| f.id == r.request_to}
     end
+    @current_friends = Friend.find_all_by_user_id(current_user.id)
+    @current_friends.each do |f|
+      @suggested_users.delete_if{|u| u.id == f.friend_id  }
+    end
     @users = @suggested_users.sort_by{rand}[0..2]
   end
   def find_friends_full
@@ -179,7 +183,15 @@ class RoundupController < ApplicationController
   end
 
   def feedback
-    SupportMailer.send_feedback(current_user, params[:feedback][:description])
+    SupportMailer.send_feedback(current_user, params[:feedback][:description]).deliver
   end
 
+  def scroll_left
+    @next_image = current_user.next_image(params[:end])
+  end
+
+  def scroll_right
+    @next_image = current_user.previous_image(params[:start])
+    logger.info @next_image.inspect
+  end
 end

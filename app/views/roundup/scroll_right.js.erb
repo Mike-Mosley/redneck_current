@@ -1,0 +1,11 @@
+<% if params[:last] != 0 %>
+    $("#picture_<%= params[:last] %>").remove()
+<% end %>
+$("#image_start").val("<%= @next_image.id %>");
+$("#last_image").val("<%= params[:end].to_i %>");
+<% if @next_image.nil? == false %>
+    $("#image_end").val("<%= current_user.previous_image(params[:end]).id %>");
+    $("#left_scroll_bar").after("<%= escape_javascript(render(:partial => "roundup/picture_right", :locals => {:i => @next_image})) %>");
+<% end %>
+$("#picture_<%= params[:end] %>").animate({width:"0px"},1000).fadeOut(0);
+$("#picture_<%= @next_image.id %>").animate({width:"70px"},1000)
