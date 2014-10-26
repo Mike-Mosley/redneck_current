@@ -1,0 +1,12 @@
+#registration
+  = render :partial => 'tabs'
+  #registration_table{:style => "max-width:700px"}
+    #settings
+      = form_for(@image, :url => {:action => 'save_holler_background', :id => @holler.id}, :html => { :multipart => true }) do |f|
+        = f.error_messages
+        %table#table_settings
+          %tbody
+            %tr
+              %th Upload Desired Background Picture
+              %td= f.file_field :name
+        = f.submit 'Set Holler Picture'

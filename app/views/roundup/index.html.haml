@@ -3,7 +3,7 @@
     %tbody
       %tr
         %td
-          %table#roundup_table{:style => "min-width:500px;min-height:250px"}
+          %table#roundup_table{:style => "max-width:500px;min-height:250px"}
             %tr#post_form
               %td=render :partial => 'new_post_form'
             = render :partial => 'post', :collection => @posts
@@ -13,4 +13,4 @@
             %tr
               %td=render :partial => 'friend_info'
             %tr{:align => 'center'}
-              %td=render :partial => 'user/wounded_warrior'
+              %td=render :partial => 'roundup/fan_pages'

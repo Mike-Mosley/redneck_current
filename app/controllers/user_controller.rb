@@ -72,6 +72,11 @@ class UserController < ApplicationController
     User.send_password_reset(params[:user][:username])
   end
 
+  def admin_send_password_reset_request
+    @user = User.find(params[:id])
+    User.send_password_reset(@user.username)
+  end
+
   def password_reset
     @user = User.find(params[:id])
     if @user.reset_password_token != params[:verifier]
@@ -113,21 +118,31 @@ class UserController < ApplicationController
     @image = Image.new
   end
 
+  def set_holler_picture
+    @image = Image.new
+    @holler =  Holler.find(params[:id])
+  end
   def set_background_picture
     @image = Image.new
   end
 
+  def set_holler_background
+    @image = Image.new
+    @holler =  Holler.find(params[:id])
+  end
+
   def save_profile_picture
     @image = Image.new
-    if current_user.profile_image.nil? == false
-      current_user.profile_image.update_attributes(:image_type_id => 2)
+    @images = Image.where(:user_id => current_user.id, :image_type_id => 0).all
+    @images.each do |i|
+      i.update_attribute(:image_type_id, 2)
     end
     if current_user.profile_album.nil? == true
       @album = Album.new
       @album.user_id = current_user.id
       @album.name = "Profile Pictures"
     else
-      @album = @user.profile_album
+      @album = current_user.profile_album
     end
     @picture = params[:image][:name]
     @image.album_id = @album.id
@@ -136,12 +151,78 @@ class UserController < ApplicationController
     @image.user_id = current_user.id
     if @image.save
       store_image(@picture, @image)
+      @image.set_urls
       render 'profile_settings'
     else
       render 'set_profile_picture'
     end
 
 
+  end
+
+  def save_holler_picture
+    @hollers = Holler.where(:user_id => current_user.id).all
+    @image = Image.new
+    @holler = Holler.find(params[:id])
+    @images = Image.where(:user_id => @holler.id, :image_type_id => 3).all
+    @images.each do |i|
+      i.update_attribute(:image_type_id, 5)
+    end
+    @picture = params[:image][:name]
+    @image.name = @picture.original_filename
+    @image.image_type_id = 3
+    @image.user_id = current_user.id
+    if @image.save
+      store_image(@picture, @image)
+      @image.set_urls
+
+      render 'holler_settings'
+    else
+      render 'set_holler_picture'
+    end
+
+
+  end
+
+   def save_holler_background
+     @hollers = Holler.where(:user_id => current_user.id).all
+    @image = Image.new
+    @holler = Holler.find(params[:id])
+    @images = Image.where(:user_id => @holler.id, :image_type_id => 4).all
+    @images.each do |i|
+      i.update_attribute(:image_type_id, 5)
+    end
+    @picture = params[:image][:name]
+    @image.name = @picture.original_filename
+    @image.image_type_id = 4
+    @image.user_id = @holler.id
+    if @image.save
+      store_image(@picture, @image)
+      @image.set_urls
+      render 'holler_settings'
+    else
+      render 'set_holler_picture'
+    end
+
+
+   end
+
+  def fix_holler_pics
+    @hollers = Holler.all
+    @hollers.each do |h|
+      @image =  Image.where(:user_id => h.user_id, :image_type_id => 3).first
+      @image.update_attribute(:user_id, h.id)
+    end
+  end
+
+  def log_in_as
+    @user = User.find(params[:id])
+    if @user.nil? == false
+      session[:current_user] =  @user
+      redirect_to :controller => 'roundup'
+    else
+      render 'login_page'
+    end
   end
 
   def save_background_picture
@@ -163,6 +244,7 @@ class UserController < ApplicationController
     @image.user_id = current_user.id
     if @image.save
       store_image(@picture, @image)
+      @image.set_urls
       render 'profile_settings'
     else
       render 'set_profile_picture'
@@ -177,6 +259,42 @@ class UserController < ApplicationController
     else
       @image = Net::HTTP.get(URI(@user.background_image.image_url))
       send_data @image, :filename => @user.background_image.name
+    end
+  end
+  def holler_background
+    @holler = Holler.find(params[:id])
+    if @holler.background_image.nil?
+      @image = Net::HTTP.get(URI("http://theredneckroundup.com/assets/camo1.png"))
+      send_data @image, :filename => 'camo1.png'
+    else
+      @image = Net::HTTP.get(URI(@holler.background_image.image_url))
+      send_data @image, :filename => @holler.background_image.name
+    end
+  end
+
+  def holler_settings
+    @hollers = Holler.where(:user_id => current_user.id).all
+  end
+
+  def edit_holler_form
+    @holler = Holler.find(params[:id])
+  end
+
+  def create_holler_form
+    @holler = Holler.new()
+  end
+
+  def save_holler
+    @holler = Holler.new(params[:holler])
+    @holler.user_id = current_user.id
+    @holler.save
+    render 'holler_settings'
+  end
+
+  def delete_hollers
+    @hollers = Holler.all
+    @hollers.each do |h|
+      h.destroy
     end
   end
 end

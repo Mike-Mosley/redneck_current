@@ -1,0 +1,7 @@
+#new_post_form{:style=> "width:100%"}
+  = form_for(@post, :url => {:action => 'wall_post', :user_id => user.id}, :remote => true) do |f|
+    %h3= "Write on #{user.cb_name}'s page"
+    %br
+    = f.text_area :post, :size => "57x4"
+    #save_button{:style => 'text-align:right'}
+      = f.submit 'Save'

@@ -1,0 +1,12 @@
+#holler_options
+  - if @holler_fan.nil? == true
+    = link_to 'Become a fan', {:action => 'become_a_fan', :id => holler.id}
+    %br
+  = link_to 'Share with buds', {:action => 'share_holler_page', :id => holler.id}
+#new_post_form{:style=> "width:100%"}
+  = form_for(@post, :url => {:action => 'holler_wall_post', :user_id => holler.id}, :remote => true) do |f|
+    %h3= "Holler at #{holler.title}"
+    %br
+    = f.text_area :post, :size => "57x4"
+    #save_button{:style => 'text-align:right'}
+      = f.submit 'Save'

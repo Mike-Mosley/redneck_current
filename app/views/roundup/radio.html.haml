@@ -1,0 +1,10 @@
+%html
+  %head
+    %title
+      Redneck Roundup
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  #logo
+    = link_to image_tag('redneck_roundup_logo_alt.png', :height => 76, :width => 210), {:controller => 'roundup', :action => 'index'}
+  #radio
+    = raw "<a id='onlineRadioLink' href='http://radiotuna.com/'>internet radio</a><script type='text/javascript' src='http://radiotuna.com/OnlineRadioPlayer/EmbedRadio?playerParams=%7B%22styleSelection0%22%3A192%2C%22styleSelection1%22%3A238%2C%22styleSelection2%22%3A57%2C%22textColor%22%3A0%2C%22backgroundColor%22%3A16052998%2C%22buttonColor%22%3A15795217%2C%22glowColor%22%3A15795217%2C%22playerSize%22%3A240%2C%22playerType%22%3A%22style%22%7D&width=240&height=292'></script>"

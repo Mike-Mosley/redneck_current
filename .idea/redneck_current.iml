@@ -60,6 +60,12 @@
     </requirement>
     <requirement>
       <requirement>
+        <dependency name="mini_magick" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
         <dependency name="rails" version="3.2.8" bound="EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />
@@ -141,6 +147,10 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] aws-s3 (v0.6.3, C:/Ruby187/lib/ruby/gems/1.8/gems/aws-s3-0.6.3)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] memcache-client (v1.8.5, C:/Ruby187/lib/ruby/gems/1.8/gems/memcache-client-1.8.5)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] dalli (v2.5.0, C:/Ruby187/lib/ruby/gems/1.8/gems/dalli-2.5.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] therubyracer (v0.11.0, C:/Ruby187/lib/ruby/gems/1.8/gems/therubyracer-0.11.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rmagick (v2.13.1, C:/Ruby187/lib/ruby/gems/1.8/gems/rmagick-2.13.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] mini_magick (v3.4, C:/Ruby187/lib/ruby/gems/1.8/gems/mini_magick-3.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] subexec (v0.2.2, C:/Ruby187/lib/ruby/gems/1.8/gems/subexec-0.2.2)" level="application" />
   </component>
 </module>
 

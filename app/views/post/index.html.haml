@@ -1,0 +1,11 @@
+#roundup{:style => "background-image:url(../../user/background/#{current_user.id})"}
+  %table#roundup_table
+    %tr
+      %td
+        %table{:id => "post_#{@post.id}", :class => 'post', :cellpadding => 0, :cellspacing => 0}
+          - if @post.addressable_type == 'Status'
+            = render :partial => 'roundup/post_data', :locals => {:post => @post}
+          - elsif @post.addressable_type == 'Wall'
+            = render :partial => 'roundup/wall_post_data', :locals => {:post => @post}
+          - elsif @post.addressable_type == 'Image'
+            = render :partial => 'roundup/image_post_data', :locals => {:post => @post}

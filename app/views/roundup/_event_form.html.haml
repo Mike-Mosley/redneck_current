@@ -1,0 +1,14 @@
+= form_for(:event, :url => {:action => 'save_event', :id => @holler.id}) do |f|
+  %table#event_form_table{:style => "position:fixed;top:200px;left:800px;background-color:white;z-index:8;border:black solid 2px;width:300px;height:300px"}
+    %tr
+      %td Event Title
+      %td=f.text_field :event_name
+    %tr
+      %td Event Description
+      %td=f.text_field :description
+    %tr
+      %td Event Date
+      %td= f.date_select :event_date
+    %tr
+      %td=f.submit 'Save Event'
+      %td=link_to 'Cancel', {:action => 'cancel_event'}, :remote => true

@@ -7,20 +7,21 @@
     = csrf_meta_tags
   #title_bar
     = link_to image_tag('redneck_roundup_logo_alt.png', :height => 76, :width => 210), {:controller => 'roundup', :action => 'index'}
-    = image_tag('coming_soon1.png', :height => 76, :width => 450)
-    = image_tag('coming_soon2.png', :height => 76, :width => 450)
+    = link_to_function image_tag('warrior_banner.png', :height => 76), "window.open('https://support.woundedwarriorproject.org/default.aspx?tsid=66&campaignSource=WEBSITE&source=ONLINE&sm_guid=MTYyODV8MjQwNjY4NHwtMXxBbm5hcm9zZWFuZGVyc29uQGdtYWlsLmNvbXwzMTc5MXw1', '_blank')"
+    = link_to_function image_tag('radio.png', :height => 76, :width => 84),  "window.open('http://theredneckroundup.com/roundup/radio'), '_radio','height=400,width=300,scrollbars=no'"
     - if session[:current_user].nil? == true
-      = render :partial => 'login_form'
+      = render :partial => 'user/login_form'
     - else
-      = render :partial => 'user_status'
+      = render :partial => 'roundup/user_status'
   #image_bar
-    = render :partial => 'picture_bar'
+    = render :partial => 'roundup/picture_bar'
+  #full_picture{:style => "display:none"}
   #ad_center_roundup
     = render :partial => 'advertiser/advertisement', :collection => generate_advertisements
     #advertiser_request_form{:style => "display:none"}
-    = link_to image_tag('advertisors.gif', :size => '230x500'), {:controller => 'advertiser', :action => 'show_request_form'}, :id => "advertiser_link", :remote => true
+    = link_to image_tag('advertisers.png', :size => '159x500'), {:controller => 'advertiser', :action => 'show_request_form'}, :id => "advertiser_link", :remote => true
   #redneck_toast
-    = image_tag 'redneck_toast.jpg', :size => "239x480"
+    %nbsp
   = yield
   - if current_user.view_video == false
     :javascript

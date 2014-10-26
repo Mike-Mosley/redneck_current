@@ -1,0 +1,2 @@
+$("#post_form").after("<%= escape_javascript(render(:partial => "roundup/post", :locals => {:post => @post})) %>");
+$("#post_post").val("");

@@ -1,0 +1,9 @@
+= form_for(:video, :url => {:action => 'save_video'}) do |f|
+  = f.error_messages
+  %table#table_settings
+    %tbody
+      %tr
+        %th Paste the URL or Embed code for the Youtube Video you want to share
+      %tr
+        %td= f.text_field :embed_code
+  = f.submit 'Link Video'

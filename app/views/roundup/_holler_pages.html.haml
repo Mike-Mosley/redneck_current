@@ -1,0 +1,6 @@
+%tr
+  %td{:rowspan=>2}=image_tag holler_pages.thumbnail_picture, :size => "60x60"
+  %td{:colspan=> 2}=link_to holler_pages.title, {:action => 'holler_page', :id => holler_pages.id}
+%tr
+  %td=holler_pages.type
+  %td= link_to 'Become A Fan', {:action => 'become_a_fan', :id => holler_pages.id}

@@ -1,0 +1,15 @@
+#registration
+  = render :partial => 'tabs'
+  #registration_table{:style => "max-width:700px"}
+    #settings
+      %ul
+      - @hollers.each do |holler|
+        %li
+          = link_to holler.title, {:controller => 'roundup', :action => 'holler_page', :id => holler.id}
+          |
+          = link_to 'Edit', {:action => 'edit_holler_form', :id => holler.id}
+          |
+          = link_to 'Choose Picture', {:action => 'set_holler_picture', :id => holler.id}
+          |
+          = link_to 'Choose Background', {:action => 'set_holler_background', :id => holler.id}
+      = link_to 'New Holler', {:action => 'create_holler_form'}

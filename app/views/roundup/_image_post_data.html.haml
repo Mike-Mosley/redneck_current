@@ -1,0 +1,24 @@
+%tr
+  %td.profile_image{}
+    = image_tag post.user.profile_image.nil? ? 'redneck_roundup_logo_alt.jpg' : post.user.profile_image.thumbnail_url, :size => "60x60"
+  %td.post_text{:colspan =>2}
+    = "#{post.user.cb_name} added a new photo"
+    %br
+    = image_tag Image.find(post.addressable_id).image_url, :style => "max-width:350px;max-height:350px;"
+%tr
+  %td{:rowspan => 99, :style => 'vertical-align:top; max-width:65px'}= link_to post.user.cb_name, :action => 'user_profile', :id => post.user.id
+  - if post.liked(current_user.id) == true
+    %td.new_post_button{:colspan =>2}= link_to 'Thumbs Down', {:action => 'unlike_post', :id => post.id}, :remote => true
+  - else
+    %td.new_post_button{:colspan =>2}= link_to 'Thumbs Up', {:action => 'like_post', :id => post.id}, :remote => true
+%tr{:id => "post_like_count_#{post.id}"}
+  - if post.comment_length > 2
+    %td.greyleft= link_to 'See All Comments', {:action => 'show_all_comments', :id => post.id}, :remote => true
+  - else
+    %td
+  - if post.like_count > 0
+    %td.greyout{:colspan =>2}= post.like_count.to_s + " rednecks put thumbs up for this"
+  - else
+    %td{:colspan =>2}
+= render :partial => 'roundup/comment', :collection => post.comments
+= render :partial => 'roundup/comment_form', :locals => {:post => post}

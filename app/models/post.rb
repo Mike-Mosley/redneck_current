@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :user, :foreign_key => :created_by
   has_many :likes, :as => :addressable
+  after_save :email_alert
 
   def liked(user)
     logger.info self.likes.inspect
@@ -24,5 +25,18 @@ class Post < ActiveRecord::Base
 
   def all_comments
     @comments = Post.where(:addressable_type => 'Comment', :addressable_id => self.id).all
+  end
+
+  def email_alert
+    users = []
+    if self.addressable_type == 'Comment'
+      post = Post.find(self.addressable_id)
+      users << post.created_by
+      post.comments.each do |c|
+        users << c.created_by
+      end
+      users.uniq!
+      UserMailer.comment_update(users, self, post).deliver
+    end
   end
 end

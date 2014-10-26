@@ -1,0 +1,15 @@
+#roundup{:style => "background-image:url(../../user/background/#{current_user.id})"}
+  %table
+    %tbody
+      %tr
+        %td
+          %table#roundup_table{:style => "min-width:500px;min-height:250px"}
+            %tr#post_form
+              %td
+                = render :partial => 'link_video_form'
+        %td{:style => 'vertical-align:top'}
+          %table#friend_form
+            %tr
+              %td=render :partial => 'friend_info'
+            %tr{:align => 'center'}
+              %td=render :partial => 'user/wounded_warrior'

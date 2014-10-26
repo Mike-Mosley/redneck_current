@@ -1,0 +1,30 @@
+#roundup{:style => "background-image:url(../../user/holler_background/#{@holler.id})"}
+  %table
+    %tbody
+      %tr
+        %td
+          %table#roundup_table{:style => "max-width:500px;min-height:250px"}
+            %tr#post_form
+              %td
+                %h2{:align => 'center'}= "#{@holler.title} Holler Page "
+                - if current_user.id == @holler.user_id
+                  =render :partial => 'holler_user_form', :locals => {:holler => @holler}
+                - else
+                  = render :partial => 'holler_post_form', :locals => {:holler => @holler}
+            = render :partial => 'post', :collection => @posts
+        %td{:style => 'vertical-align:top'}
+          %table#friend_form
+            %tr
+              %td#holler_image=render :partial => 'holler_profile_picture'
+            %tr
+              %td=render :partial => 'holler_friend_info', :locals => {:holler => @holler}
+        %td{:style => 'vertical-align:top'}
+          %table#profile_images
+            %tr
+              %td
+                #event_form{:style=>'display:none'}
+                %h3= "Upcoming Events"
+            = render 'holler_event_bar'
+            - if @holler.user_id == current_user.id
+              %tr
+                %td=link_to 'Add Event', {:action => 'show_add_event_form', :id => @holler.id}, :remote => true

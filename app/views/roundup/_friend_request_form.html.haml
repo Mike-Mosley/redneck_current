@@ -1,4 +1,4 @@
 %div{:id => "option_#{friend.id}"}
-  = link_to image_tag(friend.profile_image.nil? ? 'redneck_roundup_logo.png' : friend.profile_image.image_url, :size => "60x60"), {:action => 'send_friend_request', :id => friend.id}, :remote => true
+  = link_to image_tag(friend.profile_image.nil? ? 'redneck_roundup_logo.png' : friend.profile_image.thumbnail_url, :size => "60x60"), {:action => 'send_friend_request', :id => friend.id}, :remote => true
   %br
   = link_to friend.handle, {:action => 'send_friend_request', :id => friend.id}, :remote => true

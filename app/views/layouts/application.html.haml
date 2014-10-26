@@ -14,7 +14,7 @@
   #ad_center
     = render :partial => 'advertiser/advertisement', :collection => generate_advertisements
     #advertiser_request_form{:style => "display:none"}
-    = link_to image_tag('advertisors.gif', :size => '230x500'), {:controller => 'advertiser', :action => 'show_request_form'}, :id => "advertiser_link", :remote => true
+    = link_to image_tag('advertisers.png', :size => '230x500'), {:controller => 'advertiser', :action => 'show_request_form'}, :id => "advertiser_link", :remote => true
   = yield
   :javascript
     var _gaq = _gaq || [];

@@ -1,4 +1,17 @@
 %tr
   %td
-    %table{:id => "post_#{post.id}", :class => 'post', :cellpadding => 0, :cellspacing => 0}
-      = render :partial => 'post_data', :locals => {:post => post}
+    %table{:id => "post_#{post.id}", :class => 'post', :cellpadding => 0, :cellspacing => 0, :style => 'max-width:485px'}
+      - if post.addressable_type == 'Status'
+        = render :partial => 'post_data', :locals => {:post => post}
+      - elsif post.addressable_type == 'Wall'
+        = render :partial => 'wall_post_data', :locals => {:post => post}
+      - elsif post.addressable_type == 'Image'
+        = render :partial => 'image_post_data', :locals => {:post => post}
+      - elsif post.addressable_type == 'Video'
+        = render :partial => 'video_post_data', :locals => {:post => post}
+      - elsif post.addressable_type == 'HollerShare'
+        = render :partial => 'holler_post_data', :locals => {:post => post}
+      - elsif post.addressable_type == 'HollerPost'
+        = render :partial => 'holler_data', :locals => {:post => post}
+      - elsif post.addressable_type == 'HollerWallPost'
+        = render :partial => 'holler_wall_post_data', :locals => {:post => post}

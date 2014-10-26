@@ -2,6 +2,8 @@
   = form_for(@post, :url => {:action => 'create'}, :remote => true) do |f|
     %h3 Tell Your Buds What's Up
     = link_to 'Upload Pictures', {:action => 'upload_pictures'}
+    |
+    = link_to 'Share Youtube Video', {:action => 'link_video'}
     %br
     = f.text_area :post, :size => "57x4"
     #save_button{:style => 'text-align:right'}

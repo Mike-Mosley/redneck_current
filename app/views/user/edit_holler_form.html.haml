@@ -1,0 +1,18 @@
+#registration
+  = render :partial => 'tabs'
+  #registration_table{:style => "max-width:700px"}
+    #settings
+      = form_for(@user, :url => {:action => 'save_holler', :id => @holler.id}) do |f|
+        = f.error_messages
+        %table#table_settings
+          %tbody
+            %tr
+              %th Page Title:
+              %td= f.text_field :title
+            %tr
+              %th Page Category
+              %td= f.text_field :type
+            %tr
+              %th Post Setting:
+              %td= f.select :post_setting, Holler::POSTSETTINGs.collect
+        = f.submit 'Save Settings'

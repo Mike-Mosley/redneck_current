@@ -1,0 +1,6 @@
+#email
+  %img{:src => 'http://theredneckroundup.com/assets/redneck_roundup_logo.png', :size => '325x114'}
+  %br
+  %h2 "#{@comment.user.cb_name} commented on #{@post.user.cb_name}'s status"
+  %br
+  %p=raw "<a href=http://theredneckroundup.com/post/index/#{@post.id}>View Comment</a>"

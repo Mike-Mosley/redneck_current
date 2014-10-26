@@ -3,15 +3,26 @@
     %tbody
       %tr
         %td
-          %table#roundup_table{:style => "min-width:500px;min-height:250px"}
+          %table#roundup_table{:style => "max-width:500px;min-height:250px"}
             %tr#post_form
               %td
                 %h2{:align => 'center'}= "#{@user.cb_name} Profile"
-                =render :partial => 'new_post_form'
+                =render :partial => 'friend_post_form', :locals => {:user => @user}
             = render :partial => 'post', :collection => @posts
         %td{:style => 'vertical-align:top'}
           %table#friend_form
             %tr
-              %td=render :partial => 'friend_info'
+              %td=render :partial => 'profile_friend_info', :locals => {:user => @user}
             %tr{:align => 'center'}
               %td=render :partial => 'user/wounded_warrior'
+        %td{:style => 'vertical-align:top'}
+          %table#profile_images
+            %tr
+              %td
+                %h2= "#{@user.cb_name}'s Pictures"
+            %tr
+              %td
+                = render 'profile_picture_bar'
+            %tr
+              %td
+                = link_to 'See All', {:action => 'all_profile_picture', :id => @user.id}

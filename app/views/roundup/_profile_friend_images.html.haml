@@ -1,0 +1,6 @@
+#friend{:style => "float:left"}
+  = link_to image_tag(profile_friend_images.requester.profile_image.nil? ? 'redneck_roundup_logo.png' : profile_friend_images.requester.profile_image.thumbnail_url, :size => "60x60"), {:action => 'user_profile', :id => profile_friend_images.friend_id}
+  %br
+  = link_to profile_friend_images.requester.handle, {:action => 'user_profile', :id => profile_friend_images.friend_id}
+  %br
+  = link_to 'Add Bud', {:action => 'send_profile_friend_request', :id => profile_friend_images.id }, :remote => true

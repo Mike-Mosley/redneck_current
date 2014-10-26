@@ -1,0 +1,5 @@
+#friend_images
+  %h3
+    = "#{user.cb_name} Buds"
+    %span{:style => 'font-size:smaller'}= link_to 'See All', :action => 'all_bud_buds', :id => user.id
+  = render :partial => 'profile_friend_images', :collection => user.random_profile_friends

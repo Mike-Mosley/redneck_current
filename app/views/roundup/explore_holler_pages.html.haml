@@ -1,0 +1,13 @@
+#roundup{:style => "background-image:url(../user/background/#{current_user.id})"}
+  %table
+    %tbody
+      %tr
+        %td
+          %table#roundup_table{:style => "width:500px;min-height:250px;max-width:500px;"}
+            = render :partial => 'holler_pages', :collection => Holler.all
+        %td{:style => 'vertical-align:top'}
+          %table#friend_form
+            %tr
+              %td=render :partial => 'friend_info'
+            %tr{:align => 'center'}
+              %td=render :partial => 'roundup/fan_pages'

@@ -1,0 +1,12 @@
+.full_friend{:style => "float:left;max-width:200px;width:200px"}
+  %table
+    %tr
+      %td{:rowspan => 3}= link_to image_tag(profile_full_friend_images.requester.profile_image.nil? ? 'redneck_roundup_logo.png' : profile_full_friend_images.requester.profile_image.thumbnail_url, :size => "60x60"), {:action => 'user_profile', :id => profile_full_friend_images.friend_id}
+      %td=link_to profile_full_friend_images.requester.handle, {:action => 'user_profile', :id => profile_full_friend_images.friend_id}
+    %tr
+      %td
+        = profile_full_friend_images.requester.first_name
+        = profile_full_friend_images.requester.last_name
+    %tr
+      %td
+        = link_to 'Add Bud', {:action => 'send_profile_friend_request', :id => profile_full_friend_images.id }, :remote => true

@@ -1,0 +1,4 @@
+#friend{:style => "float:left"}
+  = link_to image_tag(fan_images.user.profile_image.nil? ? 'redneck_roundup_logo.png' : fan_images.user.profile_image.thumbnail_url, :size => "60x60"), {:action => 'user_profile', :id => fan_images.user_id}
+  %br
+  = link_to fan_images.user.handle, {:action => 'user_profile', :id => fan_images.user_id}

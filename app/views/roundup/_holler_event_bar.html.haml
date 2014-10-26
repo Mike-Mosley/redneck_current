@@ -1,0 +1,7 @@
+-@holler.events.each do |holler_event_bar|
+  - logger.info holler_event_bar.inspect
+  %tr
+    %td=holler_event_bar.event_name
+    %td=holler_event_bar.event_date.strftime("%b-%d-%Y")
+    - if @holler.user_id == current_user.id
+      %td=link_to 'Delete', {:action => 'delete_event', :id => holler_event_bar.id, :holler => @holler.id}

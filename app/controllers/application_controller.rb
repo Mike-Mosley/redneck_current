@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
       :secret_access_key => 'pideqzi0ccnPwYOZ4P6WZ9p+9mgDffiPf+zdj/2I'
       )
     AWS::S3::S3Object.store("#{image.id.to_s}_#{file.original_filename}", file.read, 'redneck_images')
+    image.thumbnail_image
+    image.set_urls
   end
 
 end
